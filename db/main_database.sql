@@ -5,17 +5,17 @@
 -- data source creation.
 create database FinanceAppDatabase;
 
--- Via the Docker Compose file, a special user called webapp will 
--- be created in MySQL. We are going to grant that user 
--- all privilages to the new database we just created. 
--- TODO: If you changed the name of the database above, you need 
+-- Via the Docker Compose file, a special user called webapp will
+-- be created in MySQL. We are going to grant that user
+-- all privilages to the new database we just created.
+-- TODO: If you changed the name of the database above, you need
 -- to change it here too.
 grant all privileges on FinanceAppDatabase.* to 'webapp'@'%';
 flush privileges;
 
 -- Move into the database we just created.
 -- TODO: If you changed the name of the database above, you need to
--- change it here too. 
+-- change it here too.
 use FinanceAppDatabase;
 
 -- Groups table
@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS User (
     middle_name VARCHAR(50),
     last_name VARCHAR(50) NOT NULL,
     password VARCHAR(255) NOT NULL,
-    FOREIGN KEY (group_id) REFERENCES `Groups`(group_id) ON UPDATE CASCADE ON DELETE Restrict
+    FOREIGN KEY (group_id) REFERENCES `Groups`(group_id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 -- Investments table
@@ -44,7 +44,7 @@ CREATE TABLE IF NOT EXISTS Investments (
     purchase_date DATE NOT NULL,
     investment_type VARCHAR(50) NOT NULL,
     user_id INT NOT NULL,
-    FOREIGN KEY (user_id) REFERENCES User(user_id) ON UPDATE CASCADE ON DELETE Restrict
+    FOREIGN KEY (user_id) REFERENCES User(user_id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 -- Spending goals table
@@ -54,7 +54,7 @@ CREATE TABLE IF NOT EXISTS Spending_goals (
     target_amount DECIMAL(10,2) NOT NULL,
     Month VARCHAR(10) NOT NULL,
     user_id INT NOT NULL,
-    FOREIGN KEY (user_id) REFERENCES User(user_id) ON UPDATE CASCADE ON DELETE Restrict
+    FOREIGN KEY (user_id) REFERENCES User(user_id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 -- Store table
 CREATE TABLE IF NOT EXISTS Store (
@@ -72,8 +72,8 @@ CREATE TABLE IF NOT EXISTS Receipts (
     total_amount DECIMAL(10,2) NOT NULL,
     user_id INT NOT NULL,
     store_id INT NOT NULL,
-    FOREIGN KEY (user_id) REFERENCES User(user_id) ON UPDATE CASCADE ON DELETE Restrict,
-    FOREIGN KEY (store_id) REFERENCES Store(store_id) ON UPDATE CASCADE ON DELETE Restrict
+    FOREIGN KEY (user_id) REFERENCES User(user_id) ON UPDATE CASCADE ON DELETE CASCADE,
+    FOREIGN KEY (store_id) REFERENCES Store(store_id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 -- Transactions table
@@ -82,7 +82,7 @@ CREATE TABLE IF NOT EXISTS Transactions (
     unit_cost DECIMAL(10,2) NOT NULL,
     quantity INT NOT NULL,
     receipt_id INT NOT NULL,
-    FOREIGN KEY (receipt_id) REFERENCES Receipts(receipt_id) ON UPDATE CASCADE ON DELETE Restrict
+    FOREIGN KEY (receipt_id) REFERENCES Receipts(receipt_id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 -- Tag table
@@ -90,7 +90,9 @@ CREATE TABLE IF NOT EXISTS Tag (
     tag_id INT PRIMARY KEY,
     tag_name VARCHAR(50) NOT NULL,
     transaction_id INT NOT NULL,
-    FOREIGN KEY (transaction_id) REFERENCES Transactions(transaction_id) ON UPDATE CASCADE ON DELETE Restrict
+    user_id INT NOT NULL,
+    FOREIGN KEY (transaction_id) REFERENCES Transactions(transaction_id) ON UPDATE CASCADE ON DELETE CASCADE,
+    FOREIGN KEY (user_id) REFERENCES User(user_id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 
@@ -101,7 +103,7 @@ CREATE TABLE IF NOT EXISTS Categories (
     category_name VARCHAR(50) NOT NULL,
     category_description VARCHAR(255),
     transaction_id INT NOT NULL,
-    FOREIGN KEY (transaction_id) REFERENCES Transactions(transaction_id) ON UPDATE CASCADE ON DELETE Restrict
+    FOREIGN KEY (transaction_id) REFERENCES Transactions(transaction_id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 -- Budget table
@@ -112,7 +114,7 @@ CREATE TABLE IF NOT EXISTS Budget (
     end_date DATE NOT NULL,
     notification_threshold DECIMAL(10,2) NOT NULL,
     category_id INT NOT NULL,
-    FOREIGN KEY (category_id) REFERENCES Categories(category_id) ON UPDATE CASCADE ON DELETE Restrict
+    FOREIGN KEY (category_id) REFERENCES Categories(category_id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 
@@ -126,7 +128,7 @@ CREATE TABLE IF NOT EXISTS Notifications (
     Message VARCHAR(255) NOT NULL,
     user_id INT NOT NULL,
     budget_id INT NOT NULL,
-    FOREIGN KEY (user_id) REFERENCES User(user_id) ON UPDATE CASCADE ON DELETE Restrict,
+    FOREIGN KEY (user_id) REFERENCES User(user_id) ON UPDATE CASCADE ON DELETE CASCADE,
     FOREIGN KEY (budget_id) REFERENCES Budget(budget_id) ON UPDATE Cascade
                            ON DELETE RESTRICT
 );
@@ -185,11 +187,11 @@ VALUES
     (3, 50.00, 6, 3);
 
 -- Tag table
-INSERT INTO Tag (tag_id, tag_name, transaction_id)
+INSERT INTO Tag (tag_id, tag_name, transaction_id, user_id)
 VALUES
-    (1, 'Food', 1),
-    (2, 'Electronics', 2),
-    (3, 'Clothing', 3);
+    (1, 'Food', 1, 1),
+    (2, 'Electronics', 2,1),
+    (3, 'Clothing', 3,2);
 
 -- Categories table
 INSERT INTO Categories (category_id, category_name, category_description, transaction_id)
