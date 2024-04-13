@@ -247,7 +247,7 @@ VALUES
     (43, 'Gilead Sciences Inc.', '2023-02-11', 'Bond', 43),
     (44, 'Biogen Inc.', '2023-03-20', 'ETF', 44),
     (45, 'Adobe Systems Inc.', '2023-01-19', 'Bond', 45),
-    (46, 'eBay Inc.', '2023-02-24', 'Bond', 46),
+    (46, 'eBay Inc.', '2023-02-24', 'Bond', 47),
     (47, 'Qualcomm Inc.', '2023-03-07', 'ETF', 47);
 
 -- Spending goals table
