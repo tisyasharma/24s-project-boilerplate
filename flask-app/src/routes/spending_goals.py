@@ -5,10 +5,10 @@ from src import db
 spending_goals = Blueprint('spending_goals', __name__)
 
 # Retrieve all spending goals of a user
-@spending_goals.route('/spending-goals/<userID>', methods=['GET'])
-def get_spending_goals(userID):
+@spending_goals.route('/spending-goals/<user_id>', methods=['GET'])
+def get_spending_goals(user_id):
     cursor = db.get_db().cursor()
-    cursor.execute('SELECT * FROM Spending_goals WHERE user_id = %s', userID)
+    cursor.execute('SELECT * FROM Spending_goals WHERE user_id = %s', user_id)
     row_headers = [x[0] for x in cursor.description]
     json_data = []
     the_data = cursor.fetchall()
@@ -20,8 +20,8 @@ def get_spending_goals(userID):
     return the_response
 
 # Create a new spending goal
-@spending_goals.route('/spending-goals/<userID>', methods=['POST'])
-def create_spending_goal(userID):
+@spending_goals.route('/spending-goals/<user_id>', methods=['POST'])
+def create_spending_goal(user_id):
     # Extracting data from the request object
     the_data = request.json
 
@@ -32,7 +32,7 @@ def create_spending_goal(userID):
 
     # Constructing the query
     query = 'INSERT INTO Spending_goals (current_amount, target_amount, Month, user_id) VALUES (%s, %s, %s, %s)'
-    values = (current_amount, target_amount, month, userID)
+    values = (current_amount, target_amount, month, user_id)
 
     # Executing and committing the insert statement
     cursor = db.get_db().cursor()
@@ -42,10 +42,10 @@ def create_spending_goal(userID):
     return 'Spending goal created successfully!', 201
 
 # Retrieve a specific spending goal
-@spending_goals.route('/spending-goals/<goalID>', methods=['GET'])
-def get_spending_goal(goalID):
+@spending_goals.route('/spending-goals/<goal_id>', methods=['GET'])
+def get_spending_goal(goal_id):
     cursor = db.get_db().cursor()
-    cursor.execute('SELECT * FROM Spending_goals WHERE goal_id = %s', (goalID))
+    cursor.execute('SELECT * FROM Spending_goals WHERE goal_id = %s', goal_id)
     row_headers = [x[0] for x in cursor.description]
     json_data = []
     theData = cursor.fetchone()
@@ -57,8 +57,8 @@ def get_spending_goal(goalID):
     return the_response
 
 # Update a spending goal
-@spending_goals.route('/spending-goals/<goalID>', methods=['PUT'])
-def update_spending_goal(goalID):
+@spending_goals.route('/spending-goals/<goal_id>', methods=['PUT'])
+def update_spending_goal(goal_id):
     # Extracting data from the request object
     the_data = request.json
 
@@ -69,7 +69,7 @@ def update_spending_goal(goalID):
 
     # Constructing the query
     query = 'UPDATE Spending_goals SET current_amount = %s, target_amount = %s, Month = %s WHERE goal_id = %s'
-    values = (current_amount, target_amount, month, goalID)
+    values = (current_amount, target_amount, month, goal_id)
 
     # Executing and committing the update statement
     cursor = db.get_db().cursor()
@@ -79,14 +79,14 @@ def update_spending_goal(goalID):
     return 'Spending goal updated successfully!', 200
 
 # Delete a spending goal
-@spending_goals.route('/spending-goals/<goalID>', methods=['DELETE'])
-def delete_spending_goal(goalID):
+@spending_goals.route('/spending-goals/<goal_id>', methods=['DELETE'])
+def delete_spending_goal(goal_id):
     # Constructing the query
     query = 'DELETE FROM Spending_goals WHERE goal_id = %s'
 
     # Executing and committing the delete statement
     cursor = db.get_db().cursor()
-    cursor.execute(query, goalID)
+    cursor.execute(query, goal_id)
     db.get_db().commit()
 
     return 'Spending goal deleted successfully!', 200

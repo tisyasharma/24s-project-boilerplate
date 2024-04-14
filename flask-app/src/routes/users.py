@@ -48,8 +48,8 @@ def create_user():
     return 'User created successfully!', 201
 
 # Update user information
-@users.route('/users/<userID>', methods=['PUT'])
-def update_user(userID):
+@users.route('/users/<user_id>', methods=['PUT'])
+def update_user(user_id):
     # collecting data from the request object 
     the_data = request.json
 
@@ -63,7 +63,7 @@ def update_user(userID):
 
     # Constructing the query
     query = 'UPDATE Users SET group="%s", Email="%s", first_name="%s", middle_name="%s", last_name="%s", password="%s" \
-        WHERE user_id=%s' % (group, Email, first_name, middle_name, last_name, password, userID)
+        WHERE user_id=%s' % (group, Email, first_name, middle_name, last_name, password, user_id)
     current_app.logger.info(query)
 
     # Executing and committing the update statement 
@@ -73,11 +73,11 @@ def update_user(userID):
 
     return 'User info updated successfully!', 200
 
-# Get user detail for user with particular userID
-@users.route('/users/<userID>', methods=['GET'])
-def get_user(userID):
+# Get user detail for user with particular user_id
+@users.route('/users/<user_id>', methods=['GET'])
+def get_user(user_id):
     cursor = db.get_db().cursor()
-    cursor.execute('SELECT * FROM Users WHERE user_id = {0}'.format(userID))
+    cursor.execute('SELECT * FROM Users WHERE user_id = {0}'.format(user_id))
     row_headers = [x[0] for x in cursor.description]
     json_data = []
     theData = cursor.fetchone()
@@ -89,14 +89,14 @@ def get_user(userID):
     return the_response
 
 # Delete a specific user
-@users.route('/users/<userID>', methods=['DELETE'])
-def delete_user(userID):
+@users.route('/users/<user_id>', methods=['DELETE'])
+def delete_user(user_id):
     # Constructing the query
     query = 'DELETE FROM Users WHERE user_id = %s'
 
     # Executing and committing the delete statement
     cursor = db.get_db().cursor()
-    cursor.execute(query, userID)
+    cursor.execute(query, user_id)
     db.get_db().commit()
 
     return 'User deleted successfully!', 200
