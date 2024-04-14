@@ -9,8 +9,8 @@ users = Blueprint('users', __name__)
 @users.route('/users', methods=['GET'])
 def get_users():
     cursor = db.get_db().cursor()
-    cursor.execute('select first_name, middle_name, last_name,\
-        email from users')
+    cursor.execute('SELECT first_name, middle_name, last_name,\
+        email FROM Users')
     row_headers = [x[0] for x in cursor.description]
     json_data = []
     theData = cursor.fetchall()
@@ -36,7 +36,8 @@ def create_user():
     password = the_data['password']
 
     # Constructing the query
-    query = 'INSERT INTO users (group, email, first_name, middle_name, last_name, password) VALUES (%s, %s, %s, %s, %s, %s)'
+    query = 'INSERT INTO Users (group, email, first_name, middle_name, last_name, password) \
+        VALUES (%s, %s, %s, %s, %s, %s)'
     values = (group, email, first_name, middle_name, last_name, password)
 
     # Executing and committing the insert statement
@@ -61,7 +62,8 @@ def update_user(userID):
     password = the_data['password']
 
     # Constructing the query
-    query = 'UPDATE users SET group="%s", Email="%s", first_name="%s", middle_name="%s", last_name="%s", password="%s" WHERE id=%s' % (group, Email, first_name, middle_name, last_name, password, id)
+    query = 'UPDATE Users SET group="%s", Email="%s", first_name="%s", middle_name="%s", last_name="%s", password="%s" \
+        WHERE user_id=%s' % (group, Email, first_name, middle_name, last_name, password, userID)
     current_app.logger.info(query)
 
     # Executing and committing the update statement 
@@ -75,7 +77,7 @@ def update_user(userID):
 @users.route('/users/<userID>', methods=['GET'])
 def get_user(userID):
     cursor = db.get_db().cursor()
-    cursor.execute('select * from users where user_id = {0}'.format(userID))
+    cursor.execute('SELECT * FROM Users WHERE user_id = {0}'.format(userID))
     row_headers = [x[0] for x in cursor.description]
     json_data = []
     theData = cursor.fetchone()
@@ -87,14 +89,14 @@ def get_user(userID):
     return the_response
 
 # Delete a specific user
-@users.route('/users/<int:user_id>', methods=['DELETE'])
-def delete_user(user_id):
+@users.route('/users/<userID>', methods=['DELETE'])
+def delete_user(userID):
     # Constructing the query
-    query = 'DELETE FROM users WHERE id = %s'
+    query = 'DELETE FROM Users WHERE user_id = %s'
 
     # Executing and committing the delete statement
     cursor = db.get_db().cursor()
-    cursor.execute(query, (user_id,))
+    cursor.execute(query, userID)
     db.get_db().commit()
 
     return 'User deleted successfully!', 200

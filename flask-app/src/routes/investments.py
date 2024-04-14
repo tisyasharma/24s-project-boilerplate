@@ -9,7 +9,7 @@ investments = Blueprint('investments', __name__)
 @investments.route('/investments/<userID>', methods=['GET'])
 def get_investments(userID):
     cursor = db.get_db().cursor()
-    cursor.execute('select * from investments where id = {0}'.format(userID))
+    cursor.execute('SELECT * FROM Investments WHERE investment_id = {0}'.format(userID))
     row_headers = [x[0] for x in cursor.description]
     json_data = []
     theData = cursor.fetchall()
@@ -87,7 +87,7 @@ def delete_investment(investmentID):
 
     # Executing and committing the delete statement
     cursor = db.get_db().cursor()
-    cursor.execute(query, (investmentID))
+    cursor.execute(query, investmentID)
     db.get_db().commit()
 
     return 'Investment deleted successfully!', 200
