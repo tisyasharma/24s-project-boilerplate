@@ -68,7 +68,7 @@ CREATE TABLE IF NOT EXISTS Store (
 -- Tag table
 CREATE TABLE IF NOT EXISTS Tag (
     tag_id INT PRIMARY KEY AUTO_INCREMENT,
-    tag_name VARCHAR(50) NOT NULL,
+    tag_name VARCHAR(50) NOT NULL UNIQUE,
     user_id INT NOT NULL,
     FOREIGN KEY (user_id) REFERENCES Users(user_id) ON UPDATE CASCADE ON DELETE CASCADE
 );
@@ -76,8 +76,8 @@ CREATE TABLE IF NOT EXISTS Tag (
 -- Categories table
 CREATE TABLE IF NOT EXISTS Categories (
     category_id INT PRIMARY KEY AUTO_INCREMENT,
-    category_name VARCHAR(50) NOT NULL,
-    category_description VARCHAR(255)
+    category_name VARCHAR(50) NOT NULL UNIQUE,
+    category_description VARCHAR(255) UNIQUE
 );
 
 -- Receipts table
