@@ -140,7 +140,11 @@ CREATE TABLE IF NOT EXISTS Budgets (
                            ON DELETE CASCADE
 );
 
-
+INSERT INTO Categories (category_name, category_description)
+VALUES
+    ('Groceries', 'Monthly grocery shopping'),
+    ('Electronics', 'New laptop'),
+    ('Clothing', 'Spring wardrobe update');
 
 /*
 -- Groups table

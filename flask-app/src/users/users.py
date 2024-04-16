@@ -6,7 +6,7 @@ from src import db
 users = Blueprint('users', __name__)
 
 # Get all users from the DB
-@users.route('/users', methods=['GET'])
+@users.route('/', methods=['GET'])
 def get_users():
     cursor = db.get_db().cursor()
     cursor.execute('SELECT first_name, middle_name, last_name,\
@@ -22,7 +22,7 @@ def get_users():
     return the_response
 
 # Create a new user
-@users.route('/users', methods=['POST'])
+@users.route('/', methods=['POST'])
 def create_user():
     # Extracting data from the request object
     the_data = request.json
@@ -48,7 +48,7 @@ def create_user():
     return 'User created successfully!', 201
 
 # Update user information
-@users.route('/users/<user_id>', methods=['PUT'])
+@users.route('/<user_id>', methods=['PUT'])
 def update_user(user_id):
     # collecting data from the request object 
     the_data = request.json
@@ -74,7 +74,7 @@ def update_user(user_id):
     return 'User info updated successfully!', 200
 
 # Get user detail for user with particular user_id
-@users.route('/users/<user_id>', methods=['GET'])
+@users.route('/<user_id>', methods=['GET'])
 def get_user(user_id):
     cursor = db.get_db().cursor()
     cursor.execute('SELECT * FROM Users WHERE user_id = {0}'.format(user_id))
@@ -89,7 +89,7 @@ def get_user(user_id):
     return the_response
 
 # Delete a specific user
-@users.route('/users/<user_id>', methods=['DELETE'])
+@users.route('/<user_id>', methods=['DELETE'])
 def delete_user(user_id):
     # Constructing the query
     query = 'DELETE FROM Users WHERE user_id = %s'
@@ -113,7 +113,7 @@ def update_group(group_id):
     
 
     # Constructing the query
-    query = 'UPDATE Group SET group_name= %s, admin_user_id= %s WHERE user_id=%s' % (group_name, admin_user_id)
+    query = 'UPDATE Groups SET group_name= %s, admin_user_id= %s WHERE user_id=%s' % (group_name, admin_user_id)
     current_app.logger.info(query)
 
     # Executing and committing the update statement 

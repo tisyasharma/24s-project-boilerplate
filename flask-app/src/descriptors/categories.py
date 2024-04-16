@@ -5,10 +5,10 @@ from src import db
 descriptors = Blueprint('descriptors', __name__)
 
 #get all categories
-@descriptors.route('/categories/', methods=['GET'])
+@descriptors.route('/categories', methods=['GET'])
 def get_all_categories():
     cursor = db.get_db().cursor()
-    cursor.execute('SELECT category_name, category_description FROM categories')
+    cursor.execute('SELECT category_name, category_description FROM Categories')
     row_headers = [x[0] for x in cursor.description]
     json_data = []
     the_data = cursor.fetchall()
@@ -23,7 +23,7 @@ def get_all_categories():
 @descriptors.route('/categories/<categoryid>', methods=['GET'])
 def get_category(category_id):
     cursor = db.get_db().cursor()
-    cursor.execute(f"SELECT * FROM categories WHERE category_id = {category_id}")
+    cursor.execute(f"SELECT * FROM Categories WHERE category_id = {category_id}")
     row_headers = [x[0] for x in cursor.description]
     json_data = []
     the_data = cursor.fetchall()
@@ -38,7 +38,7 @@ def get_category(category_id):
 @descriptors.route('/tags/<user_id>', methods=['GET'])
 def get_all_tags(user_id):
     cursor = db.get_db().cursor()
-    cursor.execute('SELECT * FROM tags WHERE user_id = %s', user_id)
+    cursor.execute('SELECT * FROM Tags WHERE user_id = %s', user_id)
     row_headers = [x[0] for x in cursor.description]
     json_data = []
     the_data = cursor.fetchall()
