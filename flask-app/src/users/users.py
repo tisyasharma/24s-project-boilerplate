@@ -100,3 +100,45 @@ def delete_user(user_id):
     db.get_db().commit()
 
     return 'User deleted successfully!', 200
+
+# Update group information
+@users.route('/group/<group_id>', methods=['PUT'])
+def update_group(group_id):
+    # collecting data from the request object 
+    the_data = request.json
+
+    # extracting the variable
+    group_name = the_data['group_name']
+    admin_user_id = the_data['admin_user_id']
+    
+
+    # Constructing the query
+    query = 'UPDATE Group SET group_name= %s, admin_user_id= %s WHERE user_id=%s' % (group_name, admin_user_id)
+    current_app.logger.info(query)
+
+    # Executing and committing the update statement 
+    cursor = db.get_db().cursor()
+    cursor.execute(query)
+    db.get_db().commit()
+
+    return 'Group info updated successfully!', 200
+# Create a new user
+@users.route('/group/<admin_user_id>', methods=['POST'])
+def create_group(admin_user_id):
+    # Extracting data from the request object
+    the_data = request.json
+
+    # Extracting variables
+    group_name = the_data['group_name']
+
+    # Constructing the query
+    query = 'INSERT INTO Users (group_name, admin_user_id) \
+        VALUES (%s, %s)'
+    values = (group_name, admin_user_id)
+
+    # Executing and committing the insert statement
+    cursor = db.get_db().cursor()
+    cursor.execute(query, values)
+    db.get_db().commit()
+
+    return 'Group created successfully!', 201
