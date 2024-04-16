@@ -160,7 +160,7 @@ def delete_transaction(transaction_id):
     return 'Transaction deleted successfully!', 200
 
 # Retrieve all receipts of a user
-@purchases.route('/stores/', methods=['GET'])
+@purchases.route('/stores', methods=['GET'])
 def get_stores():
     cursor = db.get_db().cursor()
     cursor.execute('SELECT * FROM Stores')
@@ -175,7 +175,7 @@ def get_stores():
     return the_response
 
 # Create a new receipt
-@purchases.route('/stores/', methods=['POST'])
+@purchases.route('/stores', methods=['POST'])
 def create_store():
     # Extracting data from the request object
     the_data = request.json
@@ -200,7 +200,7 @@ def create_store():
     return 'Store created successfully!', 201
 
 # Retrieve a specific store
-@purchases.route('/stores/<store/id>', methods=['GET'])
+@purchases.route('/stores/<store_id>', methods=['GET'])
 def get_store(store_id):
     cursor = db.get_db().cursor()
     cursor.execute('SELECT * FROM Stores WHERE store_id = %s', store_id)
