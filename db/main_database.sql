@@ -49,15 +49,7 @@ CREATE TABLE IF NOT EXISTS Investments (
     FOREIGN KEY (user_id) REFERENCES Users(user_id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
--- Spending goals table
-CREATE TABLE IF NOT EXISTS Spending_goals (
-    goal_id INT PRIMARY KEY AUTO_INCREMENT,
-    current_amount DECIMAL(10,2) NOT NULL,
-    target_amount DECIMAL(10,2) NOT NULL,
-    Month VARCHAR(10) NOT NULL,
-    user_id INT NOT NULL,
-    FOREIGN KEY (user_id) REFERENCES Users(user_id) ON UPDATE CASCADE ON DELETE CASCADE
-);
+
 -- Store table
 CREATE TABLE IF NOT EXISTS Stores (
     store_id INT PRIMARY KEY AUTO_INCREMENT,
@@ -121,6 +113,18 @@ CREATE TABLE IF NOT EXISTS Notifications (
     FOREIGN KEY (user_id) REFERENCES Users(user_id) ON UPDATE CASCADE ON DELETE CASCADE
 
 );
+-- Spending goals table
+CREATE TABLE IF NOT EXISTS Spending_goals (
+    goal_id INT PRIMARY KEY AUTO_INCREMENT,
+    current_amount DECIMAL(10,2) NOT NULL,
+    target_amount DECIMAL(10,2) NOT NULL,
+    Month VARCHAR(10) NOT NULL,
+    user_id INT NOT NULL,
+    notification_id INT,
+    FOREIGN KEY (user_id) REFERENCES Users(user_id) ON UPDATE CASCADE ON DELETE CASCADE,
+    FOREIGN KEY (notification_id) REFERENCES Notifications(notification_id) ON UPDATE CASCADE
+                           ON DELETE CASCADE
+);
 
 -- Budget table
 CREATE TABLE IF NOT EXISTS Budgets (
@@ -133,7 +137,7 @@ CREATE TABLE IF NOT EXISTS Budgets (
     notification_id INT,
     FOREIGN KEY (category_id) REFERENCES Categories(category_id) ON UPDATE CASCADE ON DELETE CASCADE,
     FOREIGN KEY (notification_id) REFERENCES Notifications(notification_id) ON UPDATE Cascade
-                           ON DELETE RESTRICT
+                           ON DELETE CASCADE
 );
 
 
