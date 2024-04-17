@@ -146,7 +146,6 @@ VALUES
     ('Electronics', 'New laptop'),
     ('Clothing', 'Spring wardrobe update');
 
-/*
 -- Groups table
 INSERT INTO `Groups` (group_id, admin_user_id)
 VALUES
@@ -378,4 +377,3 @@ VALUES
     (1, 'Daily', '08:00:00', '2023-04-01', 'Budget reminder', 1, 1),
     (2, 'Weekly', '12:00:00', '2023-04-05', 'Budget update', 2, 2),
     (3, 'Monthly', '10:00:00', '2023-04-10', 'Budget report', 3, 3);
-*/
