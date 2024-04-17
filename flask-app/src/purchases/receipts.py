@@ -150,7 +150,7 @@ def get_transaction(transaction_id):
 @purchases.route('/transactions/<transaction_id>', methods=['DELETE'])
 def delete_transaction(transaction_id):
     # Constructing the query
-    query = 'DELETE FROM Transaction WHERE transaction_id = %s'
+    query = 'DELETE FROM Transactions WHERE transaction_id = %s'
 
     # Executing and committing the delete statement
     cursor = db.get_db().cursor()

@@ -6,11 +6,10 @@ from src import db
 users = Blueprint('users', __name__)
 
 # Get all users from the DB
-@users.route('/', methods=['GET'])
+@users.route('', methods=['GET'])
 def get_users():
     cursor = db.get_db().cursor()
-    cursor.execute('SELECT first_name, middle_name, last_name,\
-        email FROM Users')
+    cursor.execute('SELECT first_name, middle_name, last_name, email FROM Users')
     row_headers = [x[0] for x in cursor.description]
     json_data = []
     theData = cursor.fetchall()
@@ -22,7 +21,7 @@ def get_users():
     return the_response
 
 # Create a new user
-@users.route('/', methods=['POST'])
+@users.route('', methods=['POST'])
 def create_user():
     # Extracting data from the request object
     the_data = request.json
