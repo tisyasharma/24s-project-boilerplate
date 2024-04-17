@@ -56,6 +56,7 @@ CREATE TABLE IF NOT EXISTS Stores (
     city VARCHAR(100) NOT NULL,
     state VARCHAR(100) NOT NULL
 );
+
 -- Tag table
 CREATE TABLE IF NOT EXISTS Tags (
     tag_id INT PRIMARY KEY AUTO_INCREMENT,
@@ -84,8 +85,6 @@ CREATE TABLE IF NOT EXISTS Receipts (
     FOREIGN KEY (store_id) REFERENCES Stores(store_id) ON UPDATE CASCADE ON DELETE CASCADE,
     FOREIGN KEY (tag_id) REFERENCES Tags(tag_id)  ON UPDATE CASCADE ON DELETE CASCADE,
     FOREIGN KEY (category_id) REFERENCES Categories(category_id)  ON UPDATE CASCADE ON DELETE CASCADE
-
-
 );
 
 -- Transactions table
@@ -323,20 +322,113 @@ VALUES
     (820.00, 1640.00, 'April', 25),
     (925.00, 1850.00, 'April', 32);
 
--- Store table
-INSERT INTO Store (store_id, store_name, zip_code, street_address, city, state)
+-- Stores table
+INSERT INTO Stores (store_name, zip_code, street_address, city, state)
 VALUES
-    (1, 'Walmart', '12345', '123 Main St', 'Anytown', 'NY'),
-    (2, 'Best Buy', '54321', '456 Elm St', 'Sometown', 'CA'),
-    (3, 'Amazon', '67890', '789 Oak St', 'Othercity', 'TX');
+    ('Grocery Outlet', '94102', '123 Market St', 'San Francisco', 'California'),
+    ('Whole Foods', '98101', '202 Pike St', 'Seattle', 'Washington'),
+    ('Trader Joe\'s', '75201', '303 Elm St', 'Dallas', 'Texas'),
+    ('Safeway', '33101', '505 First St', 'Miami', 'Florida'),
+    ('Walmart', '10001', '101 Main St', 'New York', 'New York'),
+    ('Staples', '02101', '250 Broadway St', 'Boston', 'Massachusetts'),
+    ('Office Depot', '60601', '350 Lake St', 'Chicago', 'Illinois'),
+    ('Barnes & Noble', '90001', '450 Main St', 'Los Angeles', 'California'),
+    ('GameStop', '37201', '550 Church St', 'Nashville', 'Tennessee'),
+    ('AMC Theatres', '19101', '600 Market St', 'Philadelphia', 'Pennsylvania'),
+    ('Grocery Outlet', '94103', '200 Valencia St', 'San Francisco', 'California'),
+    ('Whole Foods', '98105', '404 University St', 'Seattle', 'Washington'),
+    ('Trader Joe\'s', '75207', '708 Elm St', 'Dallas', 'Texas'),
+    ('Safeway', '33139', '850 Collins Ave', 'Miami Beach', 'Florida'),
+    ('Walmart', '10011', '202 5th Ave', 'New York', 'New York'),
+    ('Staples', '02210', '177 Seaport Blvd', 'Boston', 'Massachusetts'),
+    ('Office Depot', '60614', '1234 Lincoln Ave', 'Chicago', 'Illinois'),
+    ('Barnes & Noble', '90015', '765 Figueroa St', 'Los Angeles', 'California'),
+    ('GameStop', '37209', '321 Charlotte Ave', 'Nashville', 'Tennessee'),
+    ('AMC Theatres', '19103', '2001 Market St', 'Philadelphia', 'Pennsylvania'),
+    ('Grocery Outlet', '94110', '1500 Mission St', 'San Francisco', 'California'),
+    ('Whole Foods', '98109', '500 Mercer St', 'Seattle', 'Washington'),
+    ('Trader Joe\'s', '75219', '4001 Cedar Springs Rd', 'Dallas', 'Texas'),
+    ('Safeway', '33140', '4301 Alton Rd', 'Miami Beach', 'Florida'),
+    ('Walmart', '10023', '808 Columbus Ave', 'New York', 'New York'),
+    ('Staples', '02118', '401 Park Dr', 'Boston', 'Massachusetts'),
+    ('Office Depot', '60647', '2740 N Ashland Ave', 'Chicago', 'Illinois'),
+    ('Barnes & Noble', '90028', '6801 Hollywood Blvd', 'Los Angeles', 'California'),
+    ('GameStop', '37211', '5333 Nolensville Pike', 'Nashville', 'Tennessee'),
+    ('AMC Theatres', '19147', '1400 S Christopher Columbus Blvd', 'Philadelphia', 'Pennsylvania'),
+    ('Grocery Outlet', '94117', '690 Stanyan St', 'San Francisco', 'California'),
+    ('Whole Foods', '98115', '1026 NE 64th St', 'Seattle', 'Washington'),
+    ('Trader Joe\'s', '75231', '8687 N Central Expy', 'Dallas', 'Texas'),
+    ('Safeway', '33154', '9500 Harding Ave', 'Surfside', 'Florida'),
+    ('Walmart', '10002', '400 Grand St', 'New York', 'New York'),
+    ('Staples', '02115', '401 Park Dr', 'Boston', 'Massachusetts'),
+    ('Office Depot', '60657', '3134 N Clark St', 'Chicago', 'Illinois'),
+    ('Barnes & Noble', '90036', '189 The Grove Dr', 'Los Angeles', 'California'),
+    ('GameStop', '37221', '7034 Charlotte Pike', 'Nashville', 'Tennessee'),
+    ('AMC Theatres', '19123', '1001 N 2nd St', 'Philadelphia', 'Pennsylvania');
 
 -- Receipts table
-INSERT INTO Receipts (receipt_id, Date, total_amount, user_id, store_id)
+INSERT INTO Receipts (date, total_amount, user_id, store_id)
 VALUES
-    (1, '2023-01-20', 150.00, 1, 1),
-    (2, '2023-02-25', 200.00, 2, 2),
-    (3, '2023-03-12', 300.00, 3, 3);
-
+    ('2023-01-01', 150.00, 1, 1),
+    ('2023-01-02', 250.00, 2, 1),
+    ('2023-01-03', 75.00, 3, 2),
+    ('2023-01-04', 120.00, 4, 2),
+    ('2023-01-05', 30.00, 5, 3),
+    ('2023-01-06', 45.00, 6, 3),
+    ('2023-01-07', 80.00, 7, 4),
+    ('2023-01-08', 200.00, 8, 4),
+    ('2023-01-09', 95.00, 9, 5),
+    ('2023-01-10', 140.00, 10, 5),
+    ('2023-01-11', 160.00, 1, 6),
+    ('2023-01-12', 90.00, 2, 6),
+    ('2023-01-13', 130.00, 3, 7),
+    ('2023-01-14', 210.00, 4, 7),
+    ('2023-01-15', 50.00, 5, 8),
+    ('2023-01-16', 300.00, 6, 8),
+    ('2023-01-17', 70.00, 7, 9),
+    ('2023-01-18', 115.00, 8, 9),
+    ('2023-01-19', 220.00, 9, 10),
+    ('2023-01-20', 180.00, 10, 10),
+    ('2023-01-21', 260.00, 1, 1),
+    ('2023-01-22', 85.00, 2, 1),
+    ('2023-01-23', 50.00, 3, 2),
+    ('2023-01-24', 190.00, 4, 2),
+    ('2023-01-25', 300.00, 5, 3),
+    ('2023-01-26', 100.00, 6, 3),
+    ('2023-01-27', 150.00, 7, 4),
+    ('2023-01-28', 90.00, 8, 4),
+    ('2023-01-29', 210.00, 9, 5),
+    ('2023-01-30', 60.00, 10, 5),
+    ('2023-01-31', 135.00, 1, 6),
+    ('2023-02-01', 245.00, 2, 6),
+    ('2023-02-02', 175.00, 3, 7),
+    ('2023-02-03', 110.00, 4, 7),
+    ('2023-02-04', 225.00, 5, 8),
+    ('2023-02-05', 310.00, 6, 8),
+    ('2023-02-06', 120.00, 7, 9),
+    ('2023-02-07', 130.00, 8, 9),
+    ('2023-02-08', 210.00, 9, 10),
+    ('2023-02-09', 200.00, 10, 10),
+    ('2023-02-10', 180.00, 1, 1),
+    ('2023-02-11', 160.00, 2, 1),
+    ('2023-02-12', 140.00, 3, 2),
+    ('2023-02-13', 50.00, 4, 2),
+    ('2023-02-14', 260.00, 5, 3),
+    ('2023-02-15', 230.00, 6, 3),
+    ('2023-02-16', 195.00, 7, 4),
+    ('2023-02-17', 85.00, 8, 4),
+    ('2023-02-18', 70.00, 9, 5),
+    ('2023-02-19', 95.00, 10, 5),
+    ('2023-02-20', 220.00, 1, 6),
+    ('2023-02-21', 90.00, 2, 6),
+    ('2023-02-22', 145.00, 3, 7),
+    ('2023-02-23', 105.00, 4, 7),
+    ('2023-02-24', 155.00, 5, 8),
+    ('2023-02-25', 240.00, 6, 8),
+    ('2023-02-26', 190.00, 7, 9),
+    ('2023-02-27', 150.00, 8, 9),
+    ('2023-02-28', 85.00, 9, 10),
+    ('2023-03-01', 200.00, 10, 10);
 
 -- Transactions table
 INSERT INTO Transactions (transaction_id, unit_cost, quantity, receipt_id)
