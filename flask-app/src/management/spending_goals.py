@@ -176,8 +176,8 @@ def get_all_notifications():
     cursor.execute('SELECT * FROM Notifications')
     row_headers = [x[0] for x in cursor.description]
     json_data = []
-    theData = cursor.fetchone()
-    for row in theData:
+    the_data = cursor.fetchall()
+    for row in the_data:
         json_data.append(dict(zip(row_headers, row)))
     the_response = make_response(jsonify(json_data))
     the_response.status_code = 200
@@ -191,8 +191,8 @@ def get_all_notifications_from_user(user_id):
     cursor.execute(f'SELECT * FROM Notifications WHERE user_id = {user_id}')
     row_headers = [x[0] for x in cursor.description]
     json_data = []
-    theData = cursor.fetchone()
-    for row in theData:
+    the_data = cursor.fetchall()
+    for row in the_data:
         json_data.append(dict(zip(row_headers, row)))
     the_response = make_response(jsonify(json_data))
     the_response.status_code = 200
