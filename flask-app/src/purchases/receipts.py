@@ -68,15 +68,13 @@ def update_receipt(receipt_id):
 
     # Extracting variables
     total_amount = the_data['total_amount']
-    store_id = the_data['store_id']
-    tag_id = the_data['tag_id']
-    category_id = the_data['category_id']
+    
 
 
 
     # Constructing the query
-    query = 'UPDATE Receipts SET total_amount = %s, store_id = %s , tag_id = %s, category_id = %s WHERE receipt_id = %s'
-    values = ( total_amount, store_id, tag_id, category_id, receipt_id)
+    query = 'UPDATE Receipts SET total_amount = %s WHERE receipt_id = %s'
+    values = ( total_amount, receipt_id)
 
     # Executing and committing the update statement
     cursor = db.get_db().cursor()
