@@ -53,7 +53,7 @@ def update_user(user_id):
     the_data = request.json
 
     # extracting the variable
-    group = the_data['group']
+    group_id = the_data['group_id']
     Email = the_data['last_name']
     first_name = the_data['first_name']
     middle_name = the_data['job_title']
@@ -62,7 +62,7 @@ def update_user(user_id):
 
     # Constructing the query
     query = 'UPDATE Users SET group="%s", Email="%s", first_name="%s", middle_name="%s", last_name="%s", password="%s" \
-        WHERE user_id=%s' % (group, Email, first_name, middle_name, last_name, password, user_id)
+        WHERE user_id=%s' % (group_id, Email, first_name, middle_name, last_name, password, user_id)
     current_app.logger.info(query)
 
     # Executing and committing the update statement 
@@ -112,7 +112,7 @@ def update_group(group_id):
     
 
     # Constructing the query
-    query = 'UPDATE Groups SET group_name= %s, admin_user_id= %s WHERE user_id=%s' % (group_name, admin_user_id)
+    query = 'UPDATE Groups SET group_name= %s, admin_user_id= %s WHERE group_id=%s' % (group_name, admin_user_id, group_id)
     current_app.logger.info(query)
 
     # Executing and committing the update statement 
@@ -121,7 +121,8 @@ def update_group(group_id):
     db.get_db().commit()
 
     return 'Group info updated successfully!', 200
-# Create a new user
+
+# Create a new group
 @users.route('/group/<admin_user_id>', methods=['POST'])
 def create_group(admin_user_id):
     # Extracting data from the request object
@@ -131,7 +132,7 @@ def create_group(admin_user_id):
     group_name = the_data['group_name']
 
     # Constructing the query
-    query = 'INSERT INTO Users (group_name, admin_user_id) \
+    query = 'INSERT INTO Groups (group_name, admin_user_id) \
         VALUES (%s, %s)'
     values = (group_name, admin_user_id)
 
