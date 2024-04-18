@@ -8,7 +8,7 @@ descriptors = Blueprint('descriptors', __name__)
 @descriptors.route('/categories', methods=['GET'])
 def get_all_categories():
     cursor = db.get_db().cursor()
-    cursor.execute('SELECT category_name, category_description FROM Categories')
+    cursor.execute('SELECT * FROM Categories')
     row_headers = [x[0] for x in cursor.description]
     json_data = []
     the_data = cursor.fetchall()
@@ -20,7 +20,7 @@ def get_all_categories():
     return the_response
 
 #get specific category
-@descriptors.route('/categories/<categoryid>', methods=['GET'])
+@descriptors.route('/categories/<category_id>', methods=['GET'])
 def get_category(category_id):
     cursor = db.get_db().cursor()
     cursor.execute(f"SELECT * FROM Categories WHERE category_id = {category_id}")

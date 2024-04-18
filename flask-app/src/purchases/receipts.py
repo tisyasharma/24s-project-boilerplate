@@ -28,10 +28,15 @@ def create_receipt(user_id):
     date = the_data['date']
     total_amount = the_data['total_amount']
     store_id = the_data['store_id']
+    category_id = the_data['category_id']
+    tag_id = the_data['tag_id']
+    
+
 
     # Constructing the query
-    query = 'INSERT INTO Receipts (Date, total_amount, user_id, store_id) VALUES (%s, %s, %s, %s)'
-    values = (date, total_amount, user_id, store_id)
+    query = 'INSERT INTO Receipts (date, total_amount, user_id, store_id, tag_id, category_id) VALUES (%s, %s, %s, %s, %s, %s)'
+    values = (date, total_amount, user_id, store_id, tag_id, category_id)
+
 
     # Executing and committing the insert statement
     cursor = db.get_db().cursor()
@@ -62,7 +67,6 @@ def update_receipt(receipt_id):
     the_data = request.json
 
     # Extracting variables
-    date = the_data['date']
     total_amount = the_data['total_amount']
     store_id = the_data['store_id']
     tag_id = the_data['tag_id']
@@ -71,8 +75,8 @@ def update_receipt(receipt_id):
 
 
     # Constructing the query
-    query = 'UPDATE Receipts SET Date = %s, total_amount = %s, store_id = %s , tag_id = %s, category_id = %s WHERE receipt_id = %s'
-    values = (date, total_amount, store_id, tag_id, category_id, receipt_id)
+    query = 'UPDATE Receipts SET total_amount = %s, store_id = %s , tag_id = %s, category_id = %s WHERE receipt_id = %s'
+    values = ( total_amount, store_id, tag_id, category_id, receipt_id)
 
     # Executing and committing the update statement
     cursor = db.get_db().cursor()
@@ -98,7 +102,7 @@ def delete_receipt(receipt_id):
 @purchases.route('/transactions/<receipt_id>', methods=['GET'])
 def get_transactions(receipt_id):
     cursor = db.get_db().cursor()
-    cursor.execute('SELECT * FROM transactions WHERE receipt_id = %s', receipt_id)
+    cursor.execute('SELECT * FROM Transactions WHERE receipt_id = %s', receipt_id)
     row_headers = [x[0] for x in cursor.description]
     json_data = []
     the_data = cursor.fetchall()
@@ -121,7 +125,7 @@ def create_transaction(receipt_id):
     item_name = the_data['item_name']
 
     # Constructing the query
-    query = 'INSERT INTO Transactions (unit_cost, quantity, item_name, user_id) VALUES (%s, %s, %s, %s, %s) '
+    query = 'INSERT INTO Transactions (unit_cost, quantity, item_name, receipt_id) VALUES (%s, %s, %s, %s) '
     values = (unit_cost, quantity, item_name, receipt_id)
 
     # Executing and committing the insert statement
