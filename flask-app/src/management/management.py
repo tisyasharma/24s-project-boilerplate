@@ -184,7 +184,7 @@ def get_all_notifications():
     return the_response
 
 # Retrieve all budgets from user
-@management.route('/budgets/<user_id>', methods=['GET'])
+@management.route('/budgets/user/<user_id>', methods=['GET'])
 def get_all_budgets_from_user(user_id):
     cursor = db.get_db().cursor()
     cursor.execute('SELECT * FROM Budgets WHERE user_id = %s', user_id)
