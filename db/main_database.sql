@@ -433,28 +433,40 @@ VALUES
 ('Childcare', 'Expenses related to taking care of children, including daycare and school fees'),
 ('Gifts', 'Expenses for gifts given to others for occasions such as birthdays or holidays'),
 ('Savings', 'Money set aside for future use, such as emergency funds and savings accounts'),
+('Taxes', 'Expenses related to paying income or property taxes'),
 ('Subscriptions', 'Expenses related to subscription services such as streaming or magazines'),
+('Investments', 'Money invested in stocks, bonds, and other assets'),
 ('Car Maintenance', 'Expenses related to maintaining and servicing cars'),
 ('Hobbies', 'Expenses related to leisure activities such as crafts and DIY projects'),
 ('Phone Bill', 'Expenses related to monthly phone service bills'),
 ('Pet Care', 'Expenses related to taking care of pets, including food and vet bills'),
 ('Clothing', 'Expenses related to purchasing clothes and accessories'),
 ('Electronics', 'Expenses related to purchasing electronic devices such as phones and laptops'),
+('Mortgage', 'Expenses related to paying mortgage installments'),
 ('Charity', 'Expenses for donations to charitable organizations'),
 ('Office Supplies', 'Expenses for purchasing office supplies such as paper and ink'),
 ('Cleaning', 'Expenses related to cleaning supplies and services'),
+('Credit Card Payments', 'Expenses related to paying off credit card balances'),
 ('Car Payments', 'Expenses related to monthly car payments'),
 ('Household Supplies', 'Expenses related to purchasing household items such as cleaning products'),
 ('Medical Expenses', 'Expenses for medical care, prescriptions, and health-related services'),
 ('Tuition', 'Expenses related to paying tuition for educational courses'),
+('Memberships', 'Expenses for membership fees such as clubs and associations'),
 ('Vacation', 'Expenses related to planning and enjoying vacations'),
+('Professional Development', 'Expenses for career-building activities such as workshops and seminars'),
 ('Work-Related Expenses', 'Expenses for work-related activities such as travel and training'),
+('Grocery Shopping', 'Expenses for grocery items and essentials'),
 ('Pet Supplies', 'Expenses related to purchasing pet supplies such as food and toys'),
 ('Books', 'Expenses for purchasing books and educational materials'),
-('Subscription and Membership Services', 'Expenses for memberships or subscriptions to online services and platforms'),
+('Online Shopping', 'Expenses related to shopping online for various items'),
+('Subscription Services', 'Expenses for subscribing to online services and platforms'),
+('Music and Entertainment', 'Expenses for music streaming and other entertainment'),
 ('Crafts', 'Expenses for purchasing crafting supplies and materials'),
 ('Lawn Care', 'Expenses for lawn maintenance and care'),
-('Real Estate', 'Expenses related to buying or maintaining real estate properties');
+('Real Estate', 'Expenses related to buying or maintaining real estate properties'),
+('Mortgage Insurance', 'Expenses for mortgage insurance payments'),
+('Wedding Expenses', 'Expenses related to planning and hosting weddings');
+
 
 INSERT INTO Receipts (date, total_amount, user_id, store_id, tag_id, category_id)
 VALUES
@@ -748,13 +760,12 @@ VALUES (3.75, 2, 51, 'Organic Avocados'),
        (3.50, 1, 51, 'Onions'),
        (3.00, 3, 51, 'Tomatoes'),
        (1.00, 4, 51, 'Limes'),
-       (18.50, 1, 51, 'Toilet Paper'),
+       (18.50, 1, 51, 'Charmin Toilet Paper'),
        (9.00, 1, 51, 'Hand Soap'),
        (7.50, 4, 51, 'Chickpea Pasta'),
        (14.50, 1, 51, 'Method Body Wash'),
        (16.00, 1, 51, 'Charcuterie Board'),
-       (8.00, 1, 51, 'Strawberries'),
-       (18.60, 1, 52, 'UberX Ride');
+       (8.00, 1, 51, 'TruFru Chocolate Covered Strawberries');
 
 INSERT INTO Investments (stock_name, purchase_date, investment_type, user_id)
 VALUES ('AAPL', '2024-01-01', 'Stocks', 51);
@@ -772,13 +783,6 @@ VALUES (500.00, '2024-04-01', '2024-04-30', 450.00, 1);
 
 INSERT INTO Users (group_id, email, first_name, middle_name, last_name, password)
 VALUES (NULL, 'david@example.edu', 'David', NULL, 'Johnson', 'secure_password');
-
-INSERT INTO Categories (category_name, category_description)
-VALUES 
-('Groceries', 'All grocery shopping expenses'),
-('Transportation', 'Expenses on travel and commuting'),
-('Entertainment', 'Expenses on movies, concerts, and other entertainment'),
-('Education', 'Expenses on school, projects, and other productivity');
 
 INSERT INTO Stores (store_name, zip_code, street_address, city, state)
 VALUES 
