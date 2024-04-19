@@ -54,15 +54,15 @@ def update_user(user_id):
 
     # extracting the variable
     group_id = the_data['group_id']
-    Email = the_data['last_name']
+    email = the_data['email']
     first_name = the_data['first_name']
-    middle_name = the_data['job_title']
-    last_name = the_data['business_phone']
+    middle_name = the_data['middle_name']
+    last_name = the_data['last_name']
     password = the_data['password']
 
     # Constructing the query
-    query = 'UPDATE Users SET group_id="%s", Email="%s", first_name="%s", middle_name="%s", last_name="%s", password="%s" \
-        WHERE user_id=%s' % (group_id, Email, first_name, middle_name, last_name, password, user_id)
+    query = 'UPDATE Users SET group_id="%s", email="%s", first_name="%s", middle_name="%s", last_name="%s", password="%s" \
+        WHERE user_id=%s' % (group_id, email, first_name, middle_name, last_name, password, user_id)
     current_app.logger.info(query)
 
     # Executing and committing the update statement 
