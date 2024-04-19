@@ -752,7 +752,7 @@ VALUES
 
 INSERT INTO Receipts (date, total_amount, user_id, store_id, tag_id, category_id)
 VALUES ('2024-04-15', 120.00, 51, 51, 51, 1),
-       ('2024-04-15', 18.60, 51, 52, 51, 5);
+       ('2024-04-15', 18.60, 51, 52, 52, 5);
 
 INSERT INTO Transactions (unit_cost, quantity, receipt_id, item_name)
 VALUES (3.75, 2, 51, 'Organic Avocados'),
@@ -776,13 +776,13 @@ VALUES ('Daily', '09:00', '2024-04-20', 'You are nearing your Grocery budget lim
 INSERT INTO Spending_goals (current_amount, target_amount, Month, user_id)
 VALUES (100.00, 500.00, 'April', 51);
 
-INSERT INTO Budgets (amount, start_date, end_date, notification_threshold, category_id)
-VALUES (500.00, '2024-04-01', '2024-04-30', 450.00, 1);
+INSERT INTO Budgets (amount, start_date, end_date, notification_threshold, category_id, user_id)
+VALUES (500.00, '2024-04-01', '2024-04-30', 450.00, 1, 51);
 
 -- User Persona 2: Conscious College Student - David
 
 INSERT INTO Users (group_id, email, first_name, middle_name, last_name, password)
-VALUES (NULL, 'david@example.edu', 'David', NULL, 'Johnson', 'secure_password');
+VALUES (NULL, 'david@example.edu', 'David', NULL, 'Johnson', 'david_password');
 
 INSERT INTO Stores (store_name, zip_code, street_address, city, state)
 VALUES 
@@ -796,6 +796,23 @@ VALUES
 
 INSERT INTO Receipts (date, total_amount, user_id, store_id, tag_id, category_id)
 VALUES 
-('2024-04-10', 85.00, 52, 52, 52, 52),  -- Trader Joe's groceries
-('2024-04-12', 120.00, 2, 1, 1, 3); -- Campus Bookstore textbooks
+('2024-04-10', 85.00, 52, 53, 53, 1),  -- Trader Joe's groceries
+('2024-04-12', 120.00, 52, 54, 54, 9); -- Campus Bookstore textbooks
+
+INSERT INTO Transactions (unit_cost, quantity, receipt_id, item_name)
+VALUES
+(85.00, 1, 53, 'Bread'),
+(120.00, 1, 54, 'Data Structures Textbook');
+
+INSERT INTO Investments (stock_name, purchase_date, investment_type, user_id)
+VALUES ('MSFT', '2024-01-15', 'Stocks', 52);
+
+INSERT INTO Notifications (`repeat`, notification_time, notification_date, Message, user_id, budget_id)
+VALUES ('Daily', '18:00', '2024-04-15', 'You are nearing your Groceries budget limit.', 52, 52);
+
+INSERT INTO Spending_goals (current_amount, target_amount, Month, user_id)
+VALUES (50.00, 80.00, 'April', 2);
+
+INSERT INTO Budgets (amount, start_date, end_date, notification_threshold, category_id, user_id)
+VALUES (100.00, '2024-04-01', '2024-04-30', 90.00, 1, 52);  -- Groceries
 
