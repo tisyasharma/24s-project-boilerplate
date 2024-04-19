@@ -804,7 +804,15 @@ VALUES
 
 INSERT INTO Transactions (unit_cost, quantity, receipt_id, item_name)
 VALUES
-(85.00, 1, 53, 'Bread'),
+(5.00, 1, 53, 'Bread'),
+(3.00, 1, 53, 'Butter'),
+(4.00, 1, 53, 'Eggs'),
+(5.50, 6, 53, 'Pasta'),
+(7.50, 2, 53, 'Marinara'),
+(8.00, 1, 53, 'Rice'),
+(6.00, 1, 53, 'Peanut Butter'),
+(6.00, 1, 53, 'Jelly'),
+(5.00, 2, 53, 'Ramen'),
 (120.00, 1, 54, 'Data Structures Textbook');
 
 INSERT INTO Investments (stock_name, purchase_date, investment_type, user_id)
@@ -814,7 +822,7 @@ INSERT INTO Notifications (`repeat`, notification_time, notification_date, Messa
 VALUES ('Daily', '18:00', '2024-04-15', 'You are nearing your Groceries budget limit.', 52, 52);
 
 INSERT INTO Spending_goals (current_amount, target_amount, Month, user_id)
-VALUES (50.00, 80.00, 'April', 2);
+VALUES (105.00, 225.00, 'April', 52);
 
 INSERT INTO Budgets (amount, start_date, end_date, notification_threshold, category_id, user_id)
 VALUES (100.00, '2024-04-01', '2024-04-30', 90.00, 1, 52);  -- Groceries
