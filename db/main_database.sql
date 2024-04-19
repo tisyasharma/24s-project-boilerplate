@@ -682,7 +682,6 @@ VALUES
 (90.00, 360.00, 'January', 49, 49),
 (55.00, 210.00, 'February', 50, 50);
 
-
 INSERT INTO Budgets (Amount, start_date, end_date, notification_threshold, category_id, notification_id)
 VALUES
 (500.00, '2024-01-01', '2024-01-31', 450.00, 1, 1),
@@ -760,12 +759,13 @@ VALUES (3.75, 2, 51, 'Organic Avocados'),
        (3.50, 1, 51, 'Onions'),
        (3.00, 3, 51, 'Tomatoes'),
        (1.00, 4, 51, 'Limes'),
-       (18.50, 1, 51, 'Charmin Toilet Paper'),
+       (18.50, 1, 51, 'Toilet Paper'),
        (9.00, 1, 51, 'Hand Soap'),
        (7.50, 4, 51, 'Chickpea Pasta'),
        (14.50, 1, 51, 'Method Body Wash'),
        (16.00, 1, 51, 'Charcuterie Board'),
-       (8.00, 1, 51, 'TruFru Chocolate Covered Strawberries');
+       (8.00, 1, 51, 'Strawberries'),
+       (18.60, 1, 52, 'UberX Ride');
 
 INSERT INTO Investments (stock_name, purchase_date, investment_type, user_id)
 VALUES ('AAPL', '2024-01-01', 'Stocks', 51);
