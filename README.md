@@ -34,7 +34,7 @@ Email: sophia@example.com
 Password: sophia_password
 
 User Persona 2: Conscious College Student David
-Email: david@example.com
+Email: david@example.edu
 Password: david_password
 
 User Persona 3: Stay at home mom Maria
