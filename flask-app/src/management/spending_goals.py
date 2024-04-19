@@ -117,12 +117,11 @@ def create_budget(category_id):
     amount = the_data['amount']
     start_date = the_data['start_date']
     end_date = the_data['end_date']
-    notification_threshold = the_data['notification_threshold']
 
 
     # Constructing the query
-    query = 'INSERT INTO Budgets (amount, start_date, end_date, notification_threshold, category_id) VALUES (%s, %s, %s, %s)'
-    values = (amount, start_date, end_date, notification_threshold, category_id)
+    query = 'INSERT INTO Budgets (amount, start_date, end_date, category_id) VALUES (%s, %s, %s, %s)'
+    values = (amount, start_date, end_date, category_id)
 
     # Executing and committing the insert statement
     cursor = db.get_db().cursor()

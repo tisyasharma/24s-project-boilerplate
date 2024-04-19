@@ -128,7 +128,7 @@ CREATE TABLE IF NOT EXISTS Budgets (
     amount DECIMAL(10,2) NOT NULL,
     start_date DATE NOT NULL,
     end_date DATE NOT NULL,
-    notification_threshold DECIMAL(10,2) NOT NULL,
+    notification_threshold DECIMAL(10,2),
     category_id INT,
     notification_id INT,
     FOREIGN KEY (category_id) REFERENCES Categories(category_id) ON UPDATE CASCADE ON DELETE CASCADE,
