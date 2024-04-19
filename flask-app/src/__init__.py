@@ -34,7 +34,7 @@ def create_app():
 
     # Import the various Beluprint Objects
     from src.descriptors.categories import descriptors
-    from src.management.spending_goals  import management
+    from src.management.management  import management
     from src.purchases.receipts import purchases
     from src.users.users  import users
     
