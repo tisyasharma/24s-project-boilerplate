@@ -20,10 +20,7 @@ Our project is an personal finance management application we call Pocket Protect
 
 Although we did not have to create a login page and could have made separate homepages for each user, we believe the usability and personalisation of the application from our starting page, the Dashboard, is equally as useful for each of our personas. As such, we opted to build out a login that would allow us to keep track of the user and their information as they navigate the site.
 
-For ease of presentation here is an existing email and password to login as a user:
-
-**Email** user1@example.com
-**Password** password123
+For ease of presentation, we've included the emails and password to login as each user:
 
 From there, the user is able to keep track of what they bought by creating a receipt, create and join groups, track their investments, and create spending goals.
 
