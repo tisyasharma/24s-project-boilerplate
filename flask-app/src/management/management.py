@@ -106,15 +106,9 @@ def get_budget_of_category(category_id):
     the_response.mimetype = 'application/json'
     return the_response
 
-<<<<<<< HEAD
 # Create new budget
 @management.route('/budgets/<category_id>/<user_id>', methods=['POST'])
 def create_budget(category_id, user_id):
-=======
-# Create new budget for a specific category
-@management.route('/budgets/<category_id>', methods=['POST'])
-def create_budget(category_id):
->>>>>>> 77803efc03fb0bba52e82a556b0805b4dd209530
     # Extracting data from the request object
     the_data = request.json
 
