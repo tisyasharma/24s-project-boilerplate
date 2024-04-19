@@ -2,25 +2,28 @@
 
 VIDEO: https://drive.google.com/file/d/1BvBUvUXOfkV2qb3jlx2W3zRCECmdSvXL/view?usp=sharing
 
-This repo contains a boilerplate setup for spinning up 3 Docker containers: 
+This repo contains a boilerplate setup for spinning up 3 Docker containers:
+
 1. A MySQL 8 container for obvious reasons
 1. A Python Flask container to implement a REST API
 1. A Local AppSmith Server
 
 ## How to setup and start the containers
+
 **Important** - you need Docker Desktop installed
 
-1. Clone this repository.  
-1. Create a file named `db_root_password.txt` in the `secrets/` folder and put inside of it the root password for MySQL. 
-1. Create a file named `db_password.txt` in the `secrets/` folder and put inside of it the password you want to use for the a non-root user named webapp. 
-1. In a terminal or command prompt, navigate to the folder with the `docker-compose.yml` file.  
+1. Clone this repository.
+1. Create a file named `db_root_password.txt` in the `secrets/` folder and put inside of it the root password for MySQL.
+1. Create a file named `db_password.txt` in the `secrets/` folder and put inside of it the password you want to use for the a non-root user named webapp.
+1. In a terminal or command prompt, navigate to the folder with the `docker-compose.yml` file.
 1. Build the images with `docker compose build`
-1. Start the containers with `docker compose up`.  To run in detached mode, run `docker compose up -d`. 
+1. Start the containers with `docker compose up`. To run in detached mode, run `docker compose up -d`.
 
 ## Project Description
+
 Our project is an personal finance management application we call Pocket Protectors, the group members are Donny Le, Trayna Bui, Tisya Sharma, and Jasmine McCoy.
 
-Although we did not have to create a login page and could have made separate homepages for each user, we believe the usability and personalisation of the application from our starting page, the Dashboard, is equally as useful for each of our personas. As such, we opted to build out a login that would allow us to keep track of the user and their information as they navigate the site.
+Although we did not have to create a login page and could have made separate homepages for each user, we believe the usability and personalisation of the application from our starting page, the Dashboard, is equally as useful for each of our personas. As such, we opted to build out a login that would allow us to keep track of the user and their information as they navigate the site (NOTE: most endpoints/features will not be functional until the user is logged in).
 
 For ease of presentation, we've included the emails and password to login as each user:
 
@@ -43,4 +46,3 @@ Password: maria_password
 User Persona 4: Retired Man John
 Email: john@example.com
 Password: john_password
-
