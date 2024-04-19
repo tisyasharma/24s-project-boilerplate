@@ -827,7 +827,7 @@ INSERT INTO Investments (stock_name, purchase_date, investment_type, user_id)
 VALUES ('MSFT', '2024-01-15', 'Stocks', 52);
 
 INSERT INTO Notifications (`repeat`, notification_time, notification_date, Message, user_id, budget_id)
-VALUES ('Daily', '18:00', '2024-04-15', 'You are nearing your Transportation budget limit.', 52, 52);
+VALUES ('Daily', '18:00', '2024-04-15', 'You are staying well under your Transportation budget limit!', 52, 52);
 
 INSERT INTO Spending_goals (current_amount, target_amount, Month, user_id)
 VALUES (105.00, 225.00, 'April', 52);
