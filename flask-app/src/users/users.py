@@ -61,7 +61,7 @@ def update_user(user_id):
     password = the_data['password']
 
     # Constructing the query
-    query = 'UPDATE Users SET group="%s", Email="%s", first_name="%s", middle_name="%s", last_name="%s", password="%s" \
+    query = 'UPDATE Users SET group_id="%s", Email="%s", first_name="%s", middle_name="%s", last_name="%s", password="%s" \
         WHERE user_id=%s' % (group_id, Email, first_name, middle_name, last_name, password, user_id)
     current_app.logger.info(query)
 
