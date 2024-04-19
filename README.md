@@ -27,4 +27,21 @@ For ease of presentation here is an existing email and password to login as a us
 
 From there, the user is able to keep track of what they bought by creating a receipt, create and join groups, track their investments, and create spending goals.
 
+## We have an email and password for each one of our personas:
+
+User Persona 1: Busy Professional Sophia
+Email: sophia@example.com
+Password: sophia_password
+
+User Persona 2: Conscious College Student David
+Email: david@example.com
+Password: david_password
+
+User Persona 3: Stay at home mom Maria
+Email: maria@example.com
+Password: maria_password
+
+User Persona 4: Retired Man John
+Email: john@example.com
+Password: john_password
 
