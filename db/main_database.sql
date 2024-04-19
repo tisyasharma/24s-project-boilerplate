@@ -780,7 +780,7 @@ INSERT INTO Spending_goals (current_amount, target_amount, Month, user_id)
 VALUES (100.00, 500.00, 'April', 51);
 
 INSERT INTO Budgets (amount, start_date, end_date, notification_threshold, category_id, user_id)
-VALUES (500.00, '2024-04-01', '2024-04-30', 450.00, 1, 51);
+VALUES (150.00, '2024-04-01', '2024-04-30', 450.00, 1, 51);
 
 -- User Persona 2: Conscious College Student - David
 
@@ -790,17 +790,23 @@ VALUES (NULL, 'david@example.edu', 'David', NULL, 'Johnson', 'david_password');
 INSERT INTO Stores (store_name, zip_code, street_address, city, state)
 VALUES 
 ('Campus Bookstore', '90210', '123 College St', 'Beverly Hills', 'CA'),
-('Trader Joes', '90210', '321 Market St', 'Beverly Hills', 'CA');
+('Trader Joes', '90210', '321 Market St', 'Beverly Hills', 'CA'),
+('LA Metro', '90210', '123 Norwalk St', 'Beverly Hills', 'CA'),
+('Game Stop', '90210', '758 Broad St', 'Beverly Hills', 'CA');
 
 INSERT INTO Tags (tag_name, user_id)
 VALUES 
 ('School Supplies', 52),
-('Daily Groceries', 52);
+('Daily Groceries', 52),
+('Bus to Campus', 52),
+('Minecraft', 52);
 
 INSERT INTO Receipts (date, total_amount, user_id, store_id, tag_id, category_id)
 VALUES 
 ('2024-04-10', 85.00, 52, 53, 53, 1),  -- Trader Joe's groceries
-('2024-04-12', 120.00, 52, 54, 54, 9); -- Campus Bookstore textbooks
+('2024-04-12', 120.00, 52, 54, 54, 9), -- Campus Bookstore textbooks
+('2024-04-12', 4.50, 52, 55, 55, 5), -- Bus to Campus
+('2024-04-12', 14.50, 52, 56, 56, 4); -- Video Games
 
 INSERT INTO Transactions (unit_cost, quantity, receipt_id, item_name)
 VALUES
@@ -813,17 +819,19 @@ VALUES
 (6.00, 1, 53, 'Peanut Butter'),
 (6.00, 1, 53, 'Jelly'),
 (5.00, 2, 53, 'Ramen'),
-(120.00, 1, 54, 'Data Structures Textbook');
+(120.00, 1, 54, 'Data Structures Textbook'),
+(4.50, 1, 55, 'LA Metro Bus Ticket'),
+(14.50, 1, 56, 'Minecraft');
 
 INSERT INTO Investments (stock_name, purchase_date, investment_type, user_id)
 VALUES ('MSFT', '2024-01-15', 'Stocks', 52);
 
 INSERT INTO Notifications (`repeat`, notification_time, notification_date, Message, user_id, budget_id)
-VALUES ('Daily', '18:00', '2024-04-15', 'You are nearing your Groceries budget limit.', 52, 52);
+VALUES ('Daily', '18:00', '2024-04-15', 'You are nearing your Transportation budget limit.', 52, 52);
 
 INSERT INTO Spending_goals (current_amount, target_amount, Month, user_id)
 VALUES (105.00, 225.00, 'April', 52);
 
 INSERT INTO Budgets (amount, start_date, end_date, notification_threshold, category_id, user_id)
-VALUES (100.00, '2024-04-01', '2024-04-30', 90.00, 1, 52);  -- Groceries
+VALUES (15.00, '2024-04-01', '2024-04-30', 90.00, 5, 52);  -- Groceries
 
