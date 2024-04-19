@@ -183,6 +183,24 @@ def get_all_notifications():
     the_response.mimetype = 'application/json'
     return the_response
 
+# Retrieve all budgets from user
+@management.route('/budgets/<user_id>', methods=['GET'])
+def get_all_budgets_from_user(user_id):
+    cursor = db.get_db().cursor()
+    cursor.execute('SELECT * FROM Budgets WHERE user_id = %s', user_id)
+    row_headers = [x[0] for x in cursor.description]
+    json_data = []
+    the_data = cursor.fetchall()
+    for row in the_data:
+        json_data.append(dict(zip(row_headers, row)))
+    the_response = make_response(jsonify(json_data))
+    the_response.status_code = 200
+    the_response.mimetype = 'application/json'
+    return the_response
+
+
+
+
 # Retrieve all notifications for a specific user
 @management.route('/budgets/notifications/<user_id>', methods=['GET'])
 def get_all_notifications_from_user(user_id):
