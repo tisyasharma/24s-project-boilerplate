@@ -15,6 +15,16 @@ This repo contains a boilerplate setup for spinning up 3 Docker containers:
 1. Build the images with `docker compose build`
 1. Start the containers with `docker compose up`.  To run in detached mode, run `docker compose up -d`. 
 
+## Project Description
+Our project is an personal finance management application we call Pocket Protectors, the group members are Donny Le, Trayna Bui, Tisya Sharma, and Jasmine McCoy.
 
+Although we did not have to create a login page and could have made separate homepages for each user, we believe the usability and personalisation of the application from our starting page, the Dashboard, is equally as useful for each of our personas. As such, we opted to build out a login that would allow us to keep track of the user and their information as they navigate the site.
+
+For ease of presentation here is an existing email and password to login as a user:
+
+**Email** user1@example.com
+**Password** password123
+
+From there, the user is able to keep track of what they bought by creating a receipt, create and join groups, track their investments, and create spending goals.
 
 
