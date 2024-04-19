@@ -107,8 +107,8 @@ def get_budget_of_category(category_id):
     return the_response
 
 # Create new budget
-@management.route('/budgets/<category_id>', methods=['POST'])
-def create_budget(category_id):
+@management.route('/budgets/<category_id>/<user_id>', methods=['POST'])
+def create_budget(category_id, user_id):
     # Extracting data from the request object
     the_data = request.json
 
@@ -120,8 +120,8 @@ def create_budget(category_id):
 
 
     # Constructing the query
-    query = 'INSERT INTO Budgets (amount, start_date, end_date, category_id) VALUES (%s, %s, %s, %s)'
-    values = (amount, start_date, end_date, category_id)
+    query = 'INSERT INTO Budgets (amount, start_date, end_date, category_id, user_id) VALUES (%s, %s, %s, %s, %s)'
+    values = (amount, start_date, end_date, category_id, user_id)
 
     # Executing and committing the insert statement
     cursor = db.get_db().cursor()
