@@ -892,3 +892,58 @@ VALUES (300.00, '2024-04-01', '2024-04-30', 190.00, 1, 53),  -- Groceries
        (150.00, '2024-04-01', '2024-04-30', 130.00, 3, 53),   -- Utilities
        (500.00, '2024-04-01', '2024-04-30', 475.00, 15, 53),  -- Childcare
        (150.00, '2024-04-01', '2024-04-30', 140.00, 4, 53);  -- Entertainment
+
+-- User Persona 4: Retired Man John
+INSERT INTO `Groups` (group_name, admin_user_id )
+VALUES ('Retired Couple', 51);
+
+INSERT INTO Users (group_id, email, first_name, middle_name, last_name, password)
+VALUES (51, 'john@example.com', 'John', NULL, 'Doe', 'john_password'),
+       (51, 'margaret@example.com', 'Margaret', NULL, 'Doe', 'margaret_password');
+
+INSERT INTO Stores (store_name, zip_code, street_address, city, state)
+VALUES ('CVS Pharmacy', '19096', '101 Health St', 'Wynnewood', 'PA'),
+       ('Giant', '19095', '102 Food Rd', 'Ardmore', 'PA'),
+       ('Comcast', '19096', '103 Service Ln', 'Wynnewood', 'PA'),
+       ('Marriott Hotel', '10803', '104 Travel Blvd', 'New York City', 'NY');
+
+INSERT INTO Tags (tag_name, user_id)
+VALUES ('Prescriptions', 54),
+       ('Sunday Dinner Prep', 54),
+       ('Home Utilities', 54),
+       ('Spring Getaway', 54);
+
+INSERT INTO Receipts (date, total_amount, user_id, store_id, tag_id, category_id)
+VALUES ('2024-04-15', 35.00, 54, 61, 61, 8),   -- Medication and health products
+       ('2024-04-17', 114.00, 54, 62, 62, 1),   -- Weekend dinner
+       ('2024-04-18', 120.00, 54, 63, 63, 3),   -- Monthly utility bills
+       ('2024-04-20', 400.00, 54, 64, 64, 10);   -- Booking for a trip
+
+INSERT INTO Transactions (unit_cost, quantity, receipt_id, item_name)
+VALUES (35.00, 1, 61, 'Prescription Medication'),
+       (12.00, 1, 62, 'Asparagus'),
+       (2.50, 4, 62, 'Potatoes'),
+       (4.00, 1, 62, 'Milk'),
+       (2.50, 1, 62, 'Butter'),
+       (6.00, 1, 62, 'Rosemary'),
+       (3.00, 1, 62, 'Chives'),
+       (7.00, 1, 62, 'Garlic'),
+       (34.50, 1, 62, 'Bottle of Wine'),
+       (120.00, 1, 63, 'Utility Bill'),
+       (400.00, 1, 64, 'Travel Package');
+
+INSERT INTO Investments (stock_name, purchase_date, investment_type, user_id)
+VALUES ('IBM', '2020-03-15', 'Stocks', 54);
+
+INSERT INTO Notifications (`repeat`, notification_time, notification_date, Message, user_id, budget_id)
+VALUES ('Monthly', '18:00', '2024-04-30', 'Nice job! You stayed within your monthly Utility bill budget.', 54, 57);
+
+INSERT INTO Spending_goals (current_amount, target_amount, Month, user_id)
+VALUES (400.00, 1000.00, 'April', 54);
+
+INSERT INTO Budgets (amount, start_date, end_date, notification_threshold, category_id, user_id)
+VALUES  (200.00, '2024-04-01', '2024-04-30', 180.00, 8, 54),   -- Healthcare for prescriptions and regular check-ups
+        (300.00, '2024-04-01', '2024-04-30', 270.00, 1, 54),   -- Groceries for weekly meals
+        (150.00, '2024-04-01', '2024-04-30', 135.00, 3, 54),   -- Utilities to keep track of monthly bills
+        (1000.00, '2024-04-01', '2024-04-30', 900.00, 10, 54); -- Travel to manage expenses for trips
+
