@@ -735,3 +735,79 @@ VALUES
 (2000.00, '2024-12-01', '2024-12-31', 1950.00, 48, 48),
 (1000.00, '2024-01-01', '2024-01-31', 950.00, 49, 49),
 (1100.00, '2024-02-01', '2024-02-29', 1050.00, 50, 50);
+
+-- User Persona 1: Busy Professional Sophia
+
+INSERT INTO Users (group_id, email, first_name, middle_name, last_name, password)
+VALUES (NULL, 'sophia@example.com', 'Sophia', 'M', 'Smith', 'sophia_password');
+
+INSERT INTO Categories (category_name, category_description)
+VALUES 
+('Groceries', 'All grocery shopping expenses'),
+('Transportation', 'Expenses on travel and commuting'),
+('Entertainment', 'Expenses on movies, concerts, and other entertainment');
+
+INSERT INTO Stores (store_name, zip_code, street_address, city, state)
+VALUES 
+('Whole Foods Market', '94103', '399 4th Street', 'San Francisco', 'CA'),
+('Uber', '94103', 'N/A', 'San Francisco', 'CA');
+
+INSERT INTO Tags (tag_name, user_id)
+VALUES 
+('Groceries and toiletries', 51),
+('Personal', 51);
+
+INSERT INTO Receipts (date, total_amount, user_id, store_id, tag_id, category_id)
+VALUES ('2024-04-15', 120.00, 51, 51, 51, 1),
+       ('2024-04-15', 18.60, 51, 52, 51, 5);
+
+INSERT INTO Transactions (unit_cost, quantity, receipt_id, item_name)
+VALUES (3.75, 2, 51, 'Organic Avocados'),
+       (3.50, 1, 51, 'Onions'),
+       (3.00, 3, 51, 'Tomatoes'),
+       (1.00, 4, 51, 'Limes'),
+       (18.50, 1, 51, 'Charmin Toilet Paper'),
+       (9.00, 1, 51, 'Hand Soap'),
+       (7.50, 4, 51, 'Chickpea Pasta'),
+       (14.50, 1, 51, 'Method Body Wash'),
+       (16.00, 1, 51, 'Charcuterie Board'),
+       (8.00, 1, 51, 'TruFru Chocolate Covered Strawberries');
+
+INSERT INTO Investments (stock_name, purchase_date, investment_type, user_id)
+VALUES ('AAPL', '2024-01-01', 'Stocks', 51);
+
+INSERT INTO Notifications (`repeat`, notification_time, notification_date, Message, user_id, budget_id)
+VALUES ('Daily', '09:00', '2024-04-20', 'You are nearing your Grocery budget limit.', 51, 51);
+
+INSERT INTO Spending_goals (current_amount, target_amount, Month, user_id)
+VALUES (100.00, 500.00, 'April', 51);
+
+INSERT INTO Budgets (amount, start_date, end_date, notification_threshold, category_id)
+VALUES (500.00, '2024-04-01', '2024-04-30', 450.00, 1);
+
+-- User Persona 2: Conscious College Student - David
+
+INSERT INTO Users (group_id, email, first_name, middle_name, last_name, password)
+VALUES (NULL, 'david@example.edu', 'David', NULL, 'Johnson', 'secure_password');
+
+INSERT INTO Categories (category_name, category_description)
+VALUES 
+('Groceries', 'All grocery shopping expenses'),
+('Transportation', 'Expenses on travel and commuting'),
+('Entertainment', 'Expenses on movies, concerts, and other entertainment'),
+('Education', 'Expenses on school, projects, and other productivity');
+
+INSERT INTO Stores (store_name, zip_code, street_address, city, state)
+VALUES 
+('Campus Bookstore', '90210', '123 College St', 'Beverly Hills', 'CA'),
+('Trader Joes', '90210', '321 Market St', 'Beverly Hills', 'CA');
+
+INSERT INTO Tags (tag_name, user_id)
+VALUES 
+('School Supplies', 52),
+('Daily Groceries', 52);
+
+INSERT INTO Receipts (date, total_amount, user_id, store_id, tag_id, category_id)
+VALUES 
+('2024-04-10', 85.00, 52, 52, 52, 52),  -- Trader Joe's groceries
+('2024-04-12', 120.00, 2, 1, 1, 3); -- Campus Bookstore textbooks
