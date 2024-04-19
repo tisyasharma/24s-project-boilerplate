@@ -780,9 +780,9 @@ INSERT INTO Spending_goals (current_amount, target_amount, Month, user_id)
 VALUES (100.00, 500.00, 'April', 51);
 
 INSERT INTO Budgets (amount, start_date, end_date, notification_threshold, category_id, user_id)
-VALUES (150.00, '2024-04-01', '2024-04-30', 450.00, 1, 51);
+VALUES (150.00, '2024-04-01', '2024-04-30', 120.00, 1, 51);
 
--- User Persona 2: Conscious College Student - David
+-- User Persona 2: Conscious College Student David
 
 INSERT INTO Users (group_id, email, first_name, middle_name, last_name, password)
 VALUES (NULL, 'david@example.edu', 'David', NULL, 'Johnson', 'david_password');
@@ -833,5 +833,62 @@ INSERT INTO Spending_goals (current_amount, target_amount, Month, user_id)
 VALUES (105.00, 225.00, 'April', 52);
 
 INSERT INTO Budgets (amount, start_date, end_date, notification_threshold, category_id, user_id)
-VALUES (15.00, '2024-04-01', '2024-04-30', 90.00, 5, 52);  -- Groceries
+VALUES (15.00, '2024-04-01', '2024-04-30', 4.00, 5, 52);  -- Groceries
 
+-- User Persona 3: Stay at home mom Maria
+
+INSERT INTO Users (group_id, email, first_name, middle_name, last_name, password)
+VALUES (NULL, 'maria@example.com', 'Maria', NULL, 'Johnson', 'maria_password');
+
+INSERT INTO Stores (store_name, zip_code, street_address, city, state)
+VALUES ('Stop & Shop Grocery', '19096', '100 Main St', 'Wynnewood', 'PA'),
+       ('Utility Company', '19095', '200 Service Rd', 'Ardmore', 'PA'),
+       ('Daycare Center', '19096', '300 Kids Ln', 'Wynnewood', 'PA'),
+       ('AMC Theaters', '19085', '400 Movies Blvd', 'Philadelphia', 'PA');
+
+INSERT INTO Tags (tag_name, user_id)
+VALUES ('Family Needs', 53),
+       ('Bills', 53),
+       ('Evening Fee', 53),
+       ('Wonka in Theatres', 53);
+
+INSERT INTO Receipts (date, total_amount, user_id, store_id, tag_id, category_id)
+VALUES ('2024-04-15', 198.18, 53, 57, 57, 1),  -- Groceries from Stop & Shop Grocery
+       ('2024-04-17', 134.90, 53, 58, 58, 3),   -- Utility bills from Utility Company
+       ('2024-04-18', 250.00, 53, 59, 59, 15),  -- Daycare payment at Daycare Center
+       ('2024-04-19', 85.00, 53, 60, 60, 4);   -- Movie night at AMC Theaters
+
+INSERT INTO Transactions (unit_cost, quantity, receipt_id, item_name)
+VALUES (28.49, 2, 57, 'Diapers'),       -- Groceries: Multiple items, summed as baskets
+       (9.00, 2, 57, 'Wet Wipes'),
+       (18.90, 1, 57, 'Toilet Paper'),
+       (4.00, 2, 57, 'Milk'),
+       (9.00, 1, 57, 'Apple Juice'),
+       (14.50, 1, 57, 'Vitamin C Supplements'),
+       (7.00, 2, 57, 'Gerber Puffs'),
+       (12.00, 2, 57, 'Chicken Nuggets'),
+       (7.50, 2, 57, 'Mac and Cheese'),
+       (9.90, 2, 57, 'Cheese'),
+       (69.40, 1, 58, 'Monthly Electricity Bill'),    -- Utilities: A single bill for simplicity
+       (65.50, 1, 58, 'Monthly Water Bill'),
+       (250.00, 1, 59, 'Monthly Daycare Fee'),         -- Daycare: Monthly fee
+       (13.00, 4, 60, 'Movie Tickets'),               -- Entertainment: 3 tickets purchased
+       (7.00, 3, 60, 'Popcorn'),
+       (6.00, 2, 60, 'Soda');
+
+INSERT INTO Investments (stock_name, purchase_date, investment_type, user_id)
+VALUES ('TSLA', '2024-02-15', 'Stocks', 53);
+
+INSERT INTO Notifications (`repeat`, notification_time, notification_date, Message, user_id, budget_id)
+VALUES ('Daily', '20:00', '2024-04-30', 'Reminder to log today\'s expenses.', 53, 53),
+       ('Weekly', '18:00', '2024-04-30', 'You are nearing your Grocery budget limit.', 53, 53),
+       ('Monthly', '18:00', '2024-04-30', 'You exceeded this month\'s Utilities budget limit.', 53, 54);
+
+INSERT INTO Spending_goals (current_amount, target_amount, Month, user_id)
+VALUES (668.08, 1000.00, 'April', 53);
+
+INSERT INTO Budgets (amount, start_date, end_date, notification_threshold, category_id, user_id)
+VALUES (300.00, '2024-04-01', '2024-04-30', 190.00, 1, 53),  -- Groceries
+       (150.00, '2024-04-01', '2024-04-30', 130.00, 3, 53),   -- Utilities
+       (500.00, '2024-04-01', '2024-04-30', 475.00, 15, 53),  -- Childcare
+       (150.00, '2024-04-01', '2024-04-30', 140.00, 4, 53);  -- Entertainment
