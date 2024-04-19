@@ -18,6 +18,10 @@ def get_user_receipts(user_id):
     the_response.mimetype = 'application/json'
     return the_response
 
+
+
+
+
 # Create a new receipt
 @purchases.route('/receipts/<user_id>', methods=['POST'])
 def create_receipt(user_id):

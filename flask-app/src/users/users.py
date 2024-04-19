@@ -20,6 +20,25 @@ def get_users():
     the_response.mimetype = 'application/json'
     return the_response
 
+
+# Get all users from certain group
+@users.route('/<group_id>', methods=['GET'])
+def get_users_from_group(group_id):
+    cursor = db.get_db().cursor()
+    cursor.execute('SELECT * FROM Users WHERE group_id = %s', group_id)
+    row_headers = [x[0] for x in cursor.description]
+    json_data = []
+    theData = cursor.fetchall()
+    for row in theData:
+        json_data.append(dict(zip(row_headers, row)))
+    the_response = make_response(jsonify(json_data))
+    the_response.status_code = 200
+    the_response.mimetype = 'application/json'
+    return the_response
+
+
+
+
 # Create a new user
 @users.route('', methods=['POST'])
 def create_user():
