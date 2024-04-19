@@ -20,8 +20,6 @@ def get_user_receipts(user_id):
 
 
 
-
-
 # Create a new receipt
 @purchases.route('/receipts/<user_id>', methods=['POST'])
 def create_receipt(user_id):
@@ -34,13 +32,10 @@ def create_receipt(user_id):
     store_id = the_data['store_id']
     category_id = the_data['category_id']
     tag_id = the_data['tag_id']
-    
-
 
     # Constructing the query
     query = 'INSERT INTO Receipts (date, total_amount, user_id, store_id, tag_id, category_id) VALUES (%s, %s, %s, %s, %s, %s)'
     values = (date, total_amount, user_id, store_id, tag_id, category_id)
-
 
     # Executing and committing the insert statement
     cursor = db.get_db().cursor()
@@ -73,9 +68,6 @@ def update_receipt(receipt_id):
     # Extracting variables
     total_amount = the_data['total_amount']
     
-
-
-
     # Constructing the query
     query = 'UPDATE Receipts SET total_amount = %s WHERE receipt_id = %s'
     values = ( total_amount, receipt_id)
@@ -100,7 +92,7 @@ def delete_receipt(receipt_id):
 
     return 'Receipt deleted successfully!', 200
 
-# Retrieve all 
+# Retrieve all transactions for the receipt
 @purchases.route('/transactions/<receipt_id>', methods=['GET'])
 def get_transactions(receipt_id):
     cursor = db.get_db().cursor()
@@ -115,7 +107,7 @@ def get_transactions(receipt_id):
     the_response.mimetype = 'application/json'
     return the_response
 
-# Create a new spending goal
+# Create a new transaction
 @purchases.route('/transactions/<receipt_id>', methods=['POST'])
 def create_transaction(receipt_id):
     # Extracting data from the request object
@@ -152,7 +144,7 @@ def get_transaction(transaction_id):
     the_response.mimetype = 'application/json'
     return the_response
 
-# Delete a spending goal
+# Delete a specific transaction
 @purchases.route('/transactions/<transaction_id>', methods=['DELETE'])
 def delete_transaction(transaction_id):
     # Constructing the query
@@ -180,7 +172,7 @@ def get_stores():
     the_response.mimetype = 'application/json'
     return the_response
 
-# Create a new receipt
+# Create a new store
 @purchases.route('/stores', methods=['POST'])
 def create_store():
     # Extracting data from the request object
@@ -192,7 +184,6 @@ def create_store():
     street_address = the_data['street_address']
     city  = the_data['city']
     state = the_data['state']
-
 
     # Constructing the query
     query = 'INSERT INTO Stores (store_name, zip_code, street_address, city, state) VALUES (%s, %s, %s, %s, %s)'
@@ -220,7 +211,7 @@ def get_store(store_id):
     the_response.mimetype = 'application/json'
     return the_response
 
-# Update a store
+# Update a specific store
 @purchases.route('/stores/<store_id>', methods=['PUT'])
 def update_store(store_id):
     # Extracting data from the request object
@@ -232,8 +223,6 @@ def update_store(store_id):
     street_address = the_data['street_address']
     city = the_data['city']
     state = the_data['state']
-
-
 
     # Constructing the query
     query = 'UPDATE Stores SET store_name = %s, zip_code = %s, street_address = %s , city = %s, state = %s WHERE store_id = %s'
@@ -259,9 +248,7 @@ def delete_store(store_id):
 
     return 'Store deleted successfully!', 200
 
-
-
-# retreive all of the user's investments from the DB
+# Retreive all of the user's investments from the DB
 @purchases.route('/investments/<user_id>', methods=['GET'])
 def get_investments(user_id):
     cursor = db.get_db().cursor()
@@ -347,4 +334,3 @@ def delete_investment(investment_id):
     db.get_db().commit()
 
     return 'Investment deleted successfully!', 200
-

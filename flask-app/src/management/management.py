@@ -106,7 +106,7 @@ def get_budget_of_category(category_id):
     the_response.mimetype = 'application/json'
     return the_response
 
-# Create new budget
+# Create new budget for a specific category
 @management.route('/budgets/<category_id>', methods=['POST'])
 def create_budget(category_id):
     # Extracting data from the request object
@@ -131,7 +131,7 @@ def create_budget(category_id):
     return 'Budget created successfully!', 201
 
 
-# Update a spending goal
+# Update a budget
 @management.route('/budgets/<budget_id>', methods=['PUT'])
 def update_budget(budget_id):
     # Extracting data from the request object
@@ -154,7 +154,7 @@ def update_budget(budget_id):
 
     return 'Budget updated successfully!', 200
 
-# Delete a spending goal
+# Delete a budget
 @management.route('/budget/<budget_id>', methods=['DELETE'])
 def delete_budget(budget_id):
     # Constructing the query
@@ -166,22 +166,6 @@ def delete_budget(budget_id):
     db.get_db().commit()
 
     return 'Budget deleted successfully!', 200
-
-
-# Retrieve all notifications
-@management.route('/budgets/notifications', methods=['GET'])
-def get_all_notifications():
-    cursor = db.get_db().cursor()
-    cursor.execute('SELECT * FROM Notifications')
-    row_headers = [x[0] for x in cursor.description]
-    json_data = []
-    the_data = cursor.fetchall()
-    for row in the_data:
-        json_data.append(dict(zip(row_headers, row)))
-    the_response = make_response(jsonify(json_data))
-    the_response.status_code = 200
-    the_response.mimetype = 'application/json'
-    return the_response
 
 # Retrieve all budgets from user
 @management.route('/budgets/user/<user_id>', methods=['GET'])
@@ -197,9 +181,6 @@ def get_all_budgets_from_user(user_id):
     the_response.status_code = 200
     the_response.mimetype = 'application/json'
     return the_response
-
-
-
 
 # Retrieve all notifications for a specific user
 @management.route('/budgets/notifications/<user_id>', methods=['GET'])

@@ -49,8 +49,6 @@ def get_all_tags(user_id):
     the_response.mimetype = 'application/json'
     return the_response
 
-
-
 # create new tag
 @descriptors.route('/tags/<user_id>', methods=['POST'])
 def create_tag(user_id):
@@ -60,7 +58,6 @@ def create_tag(user_id):
     # Extracting variables
     tag_name = the_data['tag_name']
     
-
     # Constructing the query
     query = 'INSERT INTO Tags (tag_name, user_id) VALUES (%s, %s)'
     values = (tag_name, user_id)
@@ -72,7 +69,7 @@ def create_tag(user_id):
 
     return 'Tag created successfully!', 201
 
-# Update a spending goal
+# Update a tag
 @descriptors.route('/tags/<tag_id>', methods=['PUT'])
 def update_tag(tag_id):
     # Extracting data from the request object
@@ -92,7 +89,7 @@ def update_tag(tag_id):
 
     return 'Tag updated successfully!', 200
 
-@descriptors.route('/tags-goals/<tag_id>', methods=['DELETE'])
+@descriptors.route('/tags/<tag_id>', methods=['DELETE'])
 def delete_tag(tag_id):
     # Constructing the query
     query = 'DELETE FROM Tags WHERE tag_id = %s'
